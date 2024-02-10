@@ -26,3 +26,4 @@
     ...
   }
   ```
+- 그러나, 이렇게 할 경우, `yarn dev` 시 Next.js가 자동으로 `tsconfig.json`을 고친다.

@@ -71,6 +71,7 @@ module.exports = {
             allowBind: false,
           },
         ],
+        'react/react-in-jsx-scope': ['off'],
       },
     },
   ],
