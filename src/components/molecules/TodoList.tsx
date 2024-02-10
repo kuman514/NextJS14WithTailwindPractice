@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { TodoItem } from '^/components/atoms/TodoItem';
 import { TodoItemType } from '^/types';
 

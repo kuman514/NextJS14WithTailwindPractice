@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { TodoItemType } from '^/types';
 
 function convertDateToString(date: Date) {
