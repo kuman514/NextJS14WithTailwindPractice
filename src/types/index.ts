@@ -1,5 +1,5 @@
 export interface TodoItemType {
-  id: number;
+  id: string;
   title: string;
   detail: string;
   createdAt: Date;
