@@ -11,8 +11,8 @@ export default function Home() {
   const { todoList } = useTodoList();
 
   return (
-    <main className="w-full h-full flex flex-col justify-center items-center overflow-scroll pt-4 gap-4">
-      <div className="w-full h-full flex flex-col items-center overflow-scroll">
+    <main className="w-full h-full flex flex-col justify-center items-center overflow-auto pt-4 gap-4">
+      <div className="w-full h-full flex flex-col items-center overflow-auto">
         <TodoList todoItemDataArray={todoList} />
       </div>
       <Button

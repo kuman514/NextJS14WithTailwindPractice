@@ -1,5 +1,7 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+
 import { Button } from '^/components/atoms/Button';
 import { MultiLineTextInput } from '^/components/atoms/MultiLineTextInput';
 import { TextInput } from '^/components/atoms/TextInput';
@@ -9,7 +11,7 @@ export default function CreateTodo() {
     <main className="w-full h-full pt-4">
       <form
         method="POST"
-        className="w-full h-full flex flex-col justify-center items-center overflow-scroll gap-4"
+        className="w-full h-full flex flex-col justify-center items-center overflow-auto gap-4"
         onSubmit={(event) => {
           event.preventDefault();
           if (
