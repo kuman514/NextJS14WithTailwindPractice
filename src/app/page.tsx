@@ -1,10 +1,13 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+
 import { Button } from '^/components/atoms/Button';
 import { TodoList } from '^/components/molecules/TodoList';
 import { useTodoList } from '^/hooks/use-todo-list';
 
 export default function Home() {
+  const router = useRouter();
   const { todoList } = useTodoList();
 
   return (
@@ -18,6 +21,7 @@ export default function Home() {
            * @todo
            * Link to create-todo
            */
+          router.push('/create-todo');
         }}
       >
         New Todo
