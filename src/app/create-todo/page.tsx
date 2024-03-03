@@ -7,6 +7,8 @@ import { MultiLineTextInput } from '^/components/atoms/MultiLineTextInput';
 import { TextInput } from '^/components/atoms/TextInput';
 
 export default function CreateTodo() {
+  const router = useRouter();
+
   return (
     <main className="w-full h-full pt-4">
       <form
@@ -22,10 +24,29 @@ export default function CreateTodo() {
             return;
           }
 
-          /**
-           * @todo
-           * Send create request with `event.target.todoTitle.value` and `event.target.todoDetail.value`.
-           */
+          (async () => {
+            if (
+              !(event.target instanceof HTMLFormElement) ||
+              !event.target.todoTitle ||
+              !event.target.todoDetail
+            ) {
+              return;
+            }
+
+            const response = await fetch('/api/todos', {
+              method: 'POST',
+              body: JSON.stringify({
+                title: event.target.todoTitle.value,
+                detail: event.target.todoDetail.value,
+                createdAt: new Date(),
+                updatedAt: new Date(),
+              }),
+            });
+
+            if (response.ok) {
+              router.push('/');
+            }
+          })();
         }}
       >
         <div className="w-full flex flex-row items-center gap-2">
