@@ -17,10 +17,6 @@ export default function Home() {
       </div>
       <Button
         onClick={() => {
-          /**
-           * @todo
-           * Link to create-todo
-           */
           router.push('/create-todo');
         }}
       >
