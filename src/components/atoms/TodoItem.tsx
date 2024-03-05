@@ -1,8 +1,5 @@
 import { TodoItemType } from '^/types';
-
-function convertDateToString(date: Date) {
-  return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`;
-}
+import { convertDateToString } from '^/utils/convert-date-to-string';
 
 interface Props {
   todoItemData: TodoItemType;
