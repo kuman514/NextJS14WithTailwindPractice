@@ -13,7 +13,12 @@ export default function Home() {
   return (
     <main className="w-full h-full flex flex-col justify-center items-center overflow-auto pt-4 gap-4">
       <div className="w-full h-full flex flex-col items-center overflow-auto">
-        <TodoList todoItemDataArray={todoList} />
+        <TodoList
+          todoItemDataArray={todoList}
+          onClickTodoItem={(todoItemId) => {
+            router.push(`/read-todo/${todoItemId}`);
+          }}
+        />
       </div>
       <Button
         onClick={() => {
