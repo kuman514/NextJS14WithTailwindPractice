@@ -2,18 +2,14 @@
 
 import { useRouter } from 'next/navigation';
 
-import { Button } from '^/components/atoms/Button';
-import { MultiLineTextInput } from '^/components/atoms/MultiLineTextInput';
-import { TextInput } from '^/components/atoms/TextInput';
+import { TodoForm } from '^/components/organisms/TodoForm';
 
 export default function CreateTodo() {
   const router = useRouter();
 
   return (
     <main className="w-full h-full pt-4">
-      <form
-        method="POST"
-        className="w-full h-full flex flex-col justify-center items-center overflow-auto gap-4"
+      <TodoForm
         onSubmit={(event) => {
           event.preventDefault();
           if (
@@ -48,17 +44,8 @@ export default function CreateTodo() {
             }
           })();
         }}
-      >
-        <div className="w-full flex flex-row items-center gap-2">
-          <label htmlFor="todoTitle">Title</label>
-          <TextInput name="todoTitle" />
-        </div>
-        <div className="w-full flex flex-col gap-2">
-          <label htmlFor="todoDetail">Detail</label>
-          <MultiLineTextInput name="todoDetail" />
-        </div>
-        <Button>Create!</Button>
-      </form>
+        submitButtonLabel="Create!"
+      />
     </main>
   );
 }
