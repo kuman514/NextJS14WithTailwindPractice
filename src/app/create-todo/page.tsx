@@ -3,9 +3,18 @@
 import { useRouter } from 'next/navigation';
 
 import { TodoForm } from '^/components/organisms/TodoForm';
+import { usePostTodoItem } from '^/hooks/use-post-todo-item';
+import { useEffect } from 'react';
 
 export default function CreateTodo() {
   const router = useRouter();
+  const { isLoading, isSuccess, sendRequest } = usePostTodoItem();
+
+  useEffect(() => {
+    if (isSuccess) {
+      router.push('/');
+    }
+  }, [isSuccess]);
 
   return (
     <main className="w-full h-full pt-4">
@@ -15,34 +24,16 @@ export default function CreateTodo() {
           if (
             !(event.target instanceof HTMLFormElement) ||
             !event.target.todoTitle ||
-            !event.target.todoDetail
+            !event.target.todoDetail ||
+            isLoading
           ) {
             return;
           }
 
-          (async () => {
-            if (
-              !(event.target instanceof HTMLFormElement) ||
-              !event.target.todoTitle ||
-              !event.target.todoDetail
-            ) {
-              return;
-            }
-
-            const response = await fetch('/api/todos', {
-              method: 'POST',
-              body: JSON.stringify({
-                title: event.target.todoTitle.value,
-                detail: event.target.todoDetail.value,
-                createdAt: new Date(),
-                updatedAt: new Date(),
-              }),
-            });
-
-            if (response.ok) {
-              router.push('/');
-            }
-          })();
+          sendRequest({
+            title: event.target.todoTitle.value,
+            detail: event.target.todoDetail.value,
+          });
         }}
         submitButtonLabel="Create!"
       />
