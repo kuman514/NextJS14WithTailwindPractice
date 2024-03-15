@@ -1,18 +1,13 @@
 import { useState } from 'react';
 
-import { TodoItemType } from '^/types';
-
-interface PostTodoItemAttributes {
-  title: TodoItemType['title'];
-  detail: TodoItemType['detail'];
-}
+import { TodoItemApiAttributes } from '^/types';
 
 export function usePostTodoItem() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
 
-  async function sendRequest(newTodoItemValues: PostTodoItemAttributes) {
+  async function sendRequest(newTodoItemValues: TodoItemApiAttributes) {
     setIsLoading(true);
     setIsError(false);
 

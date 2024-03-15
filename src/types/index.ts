@@ -5,3 +5,8 @@ export interface TodoItemType {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export interface TodoItemApiAttributes {
+  title: TodoItemType['title'];
+  detail: TodoItemType['detail'];
+}
