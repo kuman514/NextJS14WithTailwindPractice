@@ -19,17 +19,17 @@ export default function ReadTodo({ params }: Props) {
   const { todoItem } = useTodoItem(params.id);
   const router = useRouter();
   const {
-    isLoading,
-    isSuccess,
+    isLoading: isDeleteLoading,
+    isSuccess: isDeleteSuccess,
     sendRequest: sendDeleteRequest,
   } = useDeleteTodoItem(params.id);
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
 
   useEffect(() => {
-    if (isSuccess) {
+    if (isDeleteSuccess) {
       router.back();
     }
-  }, [isSuccess]);
+  }, [isDeleteSuccess]);
 
   const renderContent = (() => {
     if (!todoItem) {
@@ -84,7 +84,7 @@ export default function ReadTodo({ params }: Props) {
         <span>{todoItem.detail}</span>
         <div className="flex flex-row justify-centers gap-4">
           <Button
-            isDisabled={isLoading}
+            isDisabled={isDeleteLoading}
             onClick={() => {
               router.back();
             }}
@@ -92,7 +92,7 @@ export default function ReadTodo({ params }: Props) {
             이전
           </Button>
           <Button
-            isDisabled={isLoading}
+            isDisabled={isDeleteLoading}
             onClick={() => {
               setIsEditMode(true);
             }}
@@ -100,7 +100,7 @@ export default function ReadTodo({ params }: Props) {
             수정하기
           </Button>
           <Button
-            isDisabled={isLoading}
+            isDisabled={isDeleteLoading}
             onClick={() => {
               sendDeleteRequest();
             }}
