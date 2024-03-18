@@ -78,10 +78,14 @@ export default function ReadTodo({ params }: Props) {
       />
     ) : (
       <>
-        <h1>{todoItem.title}</h1>
-        <span>생성일자: {convertDateToString(todoItem.createdAt)}</span>
-        <span>수정일자: {convertDateToString(todoItem.updatedAt)}</span>
-        <span>{todoItem.detail}</span>
+        <div className="w-full flex flex-row justify-between items-center">
+          <h1 className="text-4xl font-bold">{todoItem.title}</h1>
+          <div className="flex flex-col">
+            <span>생성일자: {convertDateToString(todoItem.createdAt)}</span>
+            <span>수정일자: {convertDateToString(todoItem.updatedAt)}</span>
+          </div>
+        </div>
+        <div className="w-full">{todoItem.detail}</div>
         <div className="flex flex-row justify-centers gap-4">
           <Button
             isDisabled={isDeleteLoading}
