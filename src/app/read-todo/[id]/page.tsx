@@ -37,21 +37,13 @@ export default function ReadTodo({ params }: Props) {
     }
 
     return isEditMode ? (
-      <TodoForm
-        initTitle={todoItem.title}
-        initDetail={todoItem.detail}
-        submitButtonLabel="Modify"
-        onSubmit={(event) => {
-          event.preventDefault();
-          if (
-            !(event.target instanceof HTMLFormElement) ||
-            !event.target.todoTitle ||
-            !event.target.todoDetail
-          ) {
-            return;
-          }
-
-          (async () => {
+      <>
+        <TodoForm
+          initTitle={todoItem.title}
+          initDetail={todoItem.detail}
+          submitButtonLabel="Modify"
+          onSubmit={(event) => {
+            event.preventDefault();
             if (
               !(event.target instanceof HTMLFormElement) ||
               !event.target.todoTitle ||
@@ -60,22 +52,40 @@ export default function ReadTodo({ params }: Props) {
               return;
             }
 
-            const response = await fetch(`/api/todos/${todoItem.id}`, {
-              method: 'PATCH',
-              body: JSON.stringify({
-                ...todoItem,
-                title: event.target.todoTitle.value,
-                detail: event.target.todoDetail.value,
-                updatedAt: new Date(),
-              }),
-            });
+            (async () => {
+              if (
+                !(event.target instanceof HTMLFormElement) ||
+                !event.target.todoTitle ||
+                !event.target.todoDetail
+              ) {
+                return;
+              }
 
-            if (response.ok) {
-              router.push('/');
-            }
-          })();
-        }}
-      />
+              const response = await fetch(`/api/todos/${todoItem.id}`, {
+                method: 'PATCH',
+                body: JSON.stringify({
+                  ...todoItem,
+                  title: event.target.todoTitle.value,
+                  detail: event.target.todoDetail.value,
+                  updatedAt: new Date(),
+                }),
+              });
+
+              if (response.ok) {
+                router.push('/');
+              }
+            })();
+          }}
+        />
+        <Button
+          isDisabled={isDeleteLoading}
+          onClick={() => {
+            setIsEditMode(false);
+          }}
+        >
+          수정 취소
+        </Button>
+      </>
     ) : (
       <>
         <div className="w-full flex flex-row justify-between items-center">
