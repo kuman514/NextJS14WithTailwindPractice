@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { Button } from '^/components/atoms/Button';
 import { TodoForm } from '^/components/organisms/TodoForm';
 import { useDeleteTodoItem } from '^/hooks/use-delete-todo-item';
-import { useTodoItem } from '^/hooks/use-todo-item';
+import { useReadTodoItem } from '^/hooks/use-read-todo-item';
 import { convertDateToString } from '^/utils/convert-date-to-string';
 import { useEffect, useState } from 'react';
 
@@ -16,7 +16,7 @@ interface Props {
 }
 
 export default function ReadTodo({ params }: Props) {
-  const { todoItem } = useTodoItem(params.id);
+  const { todoItem } = useReadTodoItem(params.id);
   const router = useRouter();
   const {
     isLoading: isDeleteLoading,
